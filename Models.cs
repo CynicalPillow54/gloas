@@ -8,6 +8,7 @@ public sealed class AppSettings
     public string GamingMonitorId { get; set; } = "";
     public string GamingMonitorLabel { get; set; } = "";
     public bool StartWithWindows { get; set; } = true;
+    public bool DarkMode { get; set; } = true;
     public SequenceSettings GamingSequence { get; set; } = new()
     {
         Steps = [new() { Buttons = ["View", "Menu"] }, new() { Buttons = ["A"] }]

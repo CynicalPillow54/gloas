@@ -16,7 +16,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Tests\**\*.cs" />
-    <Content Include="Tools\MultiMonitorTool.exe" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="Tools\MultiMonitorTool.exe" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Always">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
     <Content Include="Tools\readme.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="Assets\logo.png" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>

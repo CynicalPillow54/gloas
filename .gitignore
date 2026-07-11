@@ -1,0 +1,32 @@
+# .NET build output
+bin/
+obj/
+publish/
+artifacts/
+
+# IDE and user-specific files
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Test results and coverage
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+# Debugging and logs
+*.log
+*.pdb
+
+# Windows metadata
+Thumbs.db
+Desktop.ini
+
+# Local display profiles and settings
+desktop.cfg
+settings.json

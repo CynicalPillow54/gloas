@@ -4,9 +4,9 @@ A Windows tray application that switches to a single landscape gaming display,
 opens Steam Big Picture, and restores a captured multi-monitor desktop layout.
 It includes a dark interface theme and a custom monitor-and-controller tray icon.
 
-The repository root is `%USERPROFILE%\Documents\Projects\gloas`. The published
-application is generated in `publish\`; user settings and the captured display
-profile remain outside the repository in `%LOCALAPPDATA%\GameDisplaySwitcher`.
+The published application is generated in `publish\`; user settings and the
+captured display profile remain outside the repository in
+`%LOCALAPPDATA%\GameDisplaySwitcher`.
 
 ## First-time setup
 

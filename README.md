@@ -2,6 +2,7 @@
 
 A Windows tray application that switches to a single landscape gaming display,
 opens Steam Big Picture, and restores a captured multi-monitor desktop layout.
+It includes a dark interface theme and a custom monitor-and-controller tray icon.
 
 The repository root is `%USERPROFILE%\Documents\Projects\gloas`. The published
 application is generated in `publish\`; user settings and the captured display
@@ -17,6 +18,8 @@ profile remain outside the repository in `%LOCALAPPDATA%\GameDisplaySwitcher`.
    unless you keep the gaming layout.
 5. Connect the Xbox controller and use the Controller sequences tab to record or
    edit both sequences.
+6. Toggle **Use dark mode** on the Displays & Steam tab if you prefer the light
+   appearance. Dark mode is enabled by default.
 
 Defaults are `View + Menu`, then `A` for Gaming mode and `View + Menu`, then `B`
 for Desktop mode. The tray app observes controller input but does not consume it,
@@ -44,6 +47,13 @@ dotnet publish -c Release -o .\publish
 
 The published build is self-contained for Windows x64 and does not require a
 separate .NET runtime on the machine where it runs.
+
+Logo source and generated application assets live in `Assets\`. Regenerate
+`logo.png` and the multi-resolution `app.ico` with:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\Assets\Generate-Icon.ps1
+```
 
 The desktop shortcuts use the published executable with `--show`, `--gaming`,
 and `--desktop`. If the repository is moved again, recreate or repoint those

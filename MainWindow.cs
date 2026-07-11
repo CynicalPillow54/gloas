@@ -253,6 +253,7 @@ public sealed class MainWindow : Window
         Background = window;
         _status.Foreground = muted;
         _tabs.ItemContainerStyle = CreateTabStyle(dark, surface, control, border, text);
+        _monitorPicker.ItemContainerStyle = CreateComboBoxItemStyle(dark, control, text);
         Paint(Content as DependencyObject);
         _gamingEditor.SetDarkMode(dark);
         _desktopEditor.SetDarkMode(dark);
@@ -280,6 +281,37 @@ public sealed class MainWindow : Window
                 Paint(child);
             }
         }
+    }
+
+    private static Style CreateComboBoxItemStyle(bool dark, Brush background, Brush text)
+    {
+        var style = new Style(typeof(ComboBoxItem));
+        var template = new ControlTemplate(typeof(ComboBoxItem));
+        var itemBorder = new FrameworkElementFactory(typeof(Border));
+        itemBorder.SetBinding(Border.BackgroundProperty, new System.Windows.Data.Binding("Background") { RelativeSource = System.Windows.Data.RelativeSource.TemplatedParent });
+        var content = new FrameworkElementFactory(typeof(ContentPresenter));
+        content.SetValue(ContentPresenter.ContentSourceProperty, "Content");
+        content.SetBinding(System.Windows.Documents.TextElement.ForegroundProperty, new System.Windows.Data.Binding("Foreground") { RelativeSource = System.Windows.Data.RelativeSource.TemplatedParent });
+        content.SetBinding(FrameworkElement.MarginProperty, new System.Windows.Data.Binding("Padding") { RelativeSource = System.Windows.Data.RelativeSource.TemplatedParent });
+        itemBorder.AppendChild(content);
+        template.VisualTree = itemBorder;
+
+        style.Setters.Add(new Setter(Control.TemplateProperty, template));
+        style.Setters.Add(new Setter(Control.BackgroundProperty, background));
+        style.Setters.Add(new Setter(Control.ForegroundProperty, text));
+        style.Setters.Add(new Setter(Control.PaddingProperty, new Thickness(8, 5, 8, 5)));
+        style.Setters.Add(new Setter(Control.HorizontalContentAlignmentProperty, System.Windows.HorizontalAlignment.Stretch));
+
+        var highlighted = new Trigger { Property = ComboBoxItem.IsHighlightedProperty, Value = true };
+        highlighted.Setters.Add(new Setter(Control.BackgroundProperty, Brush(dark ? "#303A4B" : "#E5EAF2")));
+        highlighted.Setters.Add(new Setter(Control.ForegroundProperty, text));
+        style.Triggers.Add(highlighted);
+
+        var selected = new Trigger { Property = ComboBoxItem.IsSelectedProperty, Value = true };
+        selected.Setters.Add(new Setter(Control.BackgroundProperty, Brush(dark ? "#354C78" : "#DCE6FF")));
+        selected.Setters.Add(new Setter(Control.ForegroundProperty, text));
+        style.Triggers.Add(selected);
+        return style;
     }
 
     private static Style CreateTabStyle(bool dark, Brush surface, Brush control, Brush border, Brush text)
